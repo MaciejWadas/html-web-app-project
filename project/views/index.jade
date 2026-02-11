@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    div(class="container-fluid px-0 full-header")
+        header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+            div(class="col-md-3 mb-2 mb-md-0")
+                a(href="/", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                    img(id="logo" src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+            ul.nav.col-12.col-md-auto.justify-content-center
+                li
+                    a(href="/", class="nav-link active") Home
+                li
+                    a(href="/articles", class="nav-link") Articles
+                li
+                    a(href="/support", class="nav-link") Support Us!
+                li
+                    a(href="/about", class="nav-link") About
+
+            div(class="col-md-3 text-end")
+                a(href="/login", class="btn btn-outline-primary me-2") Login
+                a(href="/register", class="btn btn-primary") Sign-up
+
+    .container
+        h1(class="title-font text-center my-5")= title
+        p.lead.text-center Welcome to the Witcher Universe Wiki! Discover lore, characters, monsters, and locations from Andrzej Sapkowski's saga and CD Projekt RED's games.
+        div(class="article-div mx-auto")
+            article.px-5.py-4
+                h2 Key Sections
+                ul
+                    li.my-2.lead Geralt of Rivia – the White Wolf, witcher from Kaer Morhen.
+                    li.my-2.lead Ciri – Child of Destiny, heir to ancient elven blood.
+                    li.my-2.lead The Wild Hunt – spectral riders from another world.
+                    li.my-2.lead Monsters like Leshen, Griffin, and Fiend.
+                a(href="/articles" class="btn btn-outline-primary mt-3") Browse Articles
+            img(class="item-photo", src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+    p.text-center.lead.my-4 For more information about this project please visit the #[a(href="/about") about section].

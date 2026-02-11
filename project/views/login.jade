@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    div(class="container-fluid px-0 full-header")
+        header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+            div(class="col-md-3 mb-2 mb-md-0")
+                a(href="/home", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                    img(id="logo" src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+            ul.nav.col-12.col-md-auto.justify-content-center
+                li.nav-item
+                    a(href="/", class="nav-link") Home
+                li.nav-item
+                    a(href="/articles", class="nav-link") Articles
+                li.nav-item
+                    a(href="/support", class="nav-link") Support Us!
+                li.nav-item
+                    a(href="/about", class="nav-link") About
+
+            div(class="col-md-3 text-end")
+                button(type="button", class="btn btn-primary me-2 active") Login
+                a(href="/register" class="btn btn-outline-primary") Sign-up
+
+    .container.py-5
+        .row.justify-content-center
+            .col-md-6.col-lg-4
+                .card.shadow(style="background-color: #595260; border: 2px solid #FFD523;")
+                    .card-body.p-5
+                        h1(class="title-font text-center mb-4") Witcher Wiki Login
+                        form(method="POST" action="/login")
+                            .mb-4
+                                label(class="form-label fw-bold" for="email") Email
+                                input(type="email" class="form-control" id="email" name="email" placeholder="witcher@kaermorhen.com" required style="background-color: #2C2E43; border: 1px solid #FFD523; color: #FFD523;")
+                                .form-text Enter your witcher contract email.
+                            .mb-4
+                                label(class="form-label fw-bold" for="password") Password
+                                input(type="password" class="form-control" id="password" name="password" required style="background-color: #2C2E43; border: 1px solid #FFD523; color: #FFD523;")
+                            button(type="submit" class="btn btn-primary w-100 mb-3") Sign In
+                            .text-center
+                                p Don't have an account?
+                                    a(href="/register") Register here

@@ -1,0 +1,48 @@
+extends layout
+
+block content
+    div(class="container-fluid px-0 full-header")
+        header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+            div(class="col-md-3 mb-2 mb-md-0")
+                a(href="/", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                    img(id="logo" src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+            ul.nav.col-12.col-md-auto.justify-content-center
+                li.nav-item
+                    a(href="/", class="nav-link") Home
+                li.nav-item
+                    a(href="/articles", class="nav-link active") Articles
+                li.nav-item
+                    a(href="/support", class="nav-link") Support Us!
+                li.nav-item
+                    a(href="/about", class="nav-link") About
+
+            div(class="col-md-3 text-end")
+                button(type="button", class="btn btn-outline-primary me-2") Login
+                button(type="button", class="btn btn-primary") Sign-up
+
+    .container.my-5
+        h1(class="title-font text-center mb-5") All Articles
+        div(class="row")
+            div(class="col-md-6 mb-4 text-center")
+                article(class="p-4 h-100")
+                    h3 Geralt of Rivia
+                    p Master witcher, mutant monster slayer. Travels the Continent with Roach, his horse.
+                    a(href="#" class="btn btn-outline-primary mt-3") Read More
+            div(class="col-md-6 mb-4 text-center")
+                article(class="p-4 h-100")
+                    h3 Cirilla Fiona Elen Riannon
+                    p Lion Cub of Cintra, trained as witcher. Possesses Elder Blood powers.
+                    a(href="#" class="btn btn-outline-primary mt-3") Read More
+            div(class="col-md-6 mb-4 text-center")
+                article(class="p-4 h-100")
+                    h3 The Witcher Schools
+                    p Kaer Morhen (Wolves), Viper School, Cat School. Each with unique signs and mutations.
+                    a(href="#" class="btn btn-outline-primary mt-3") Read More
+            div(class="col-md-6 mb-4 text-center")
+                article(class="p-4 h-100")
+                    h3 Monsters of the Continent
+                    p From drowners to dragons, beasts lurk everywhere. Use Igni, Aard, and Yrden against them.
+                    a(href="#" class="btn btn-outline-primary mt-3") Read More
+        div(class="text-center ")
+            a(href="#" class="btn btn-primary") Load More Articles

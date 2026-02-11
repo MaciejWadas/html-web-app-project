@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    div(class="container-fluid px-0 full-header")
+        header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+            div(class="col-md-3 mb-2 mb-md-0")
+                a(href="/", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                    img(id="logo" src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+            ul.nav.col-12.col-md-auto.justify-content-center
+                li.nav-item
+                    a(href="/", class="nav-link") Home
+                li.nav-item
+                    a(href="/articles", class="nav-link") Articles
+                li.nav-item
+                    a(href="/support", class="nav-link") Support Us!
+                li.nav-item
+                    a(href="/about", class="nav-link active") About
+
+            div(class="col-md-3 text-end")
+                button(type="button", class="btn btn-outline-primary me-2") Login
+                button(type="button", class="btn btn-primary") Sign-up
+
+    .container.my-5
+        h1(class="title-font text-center mb-5") About Witcher Universe Wiki
+        div(class="row")
+            div(class="col-md-9 mb-4 text-center")
+                article(class="p-4 h-100 w-100")
+                    h2 Our Mission
+                    p.lead.mt-2 Fan-made wiki dedicated to the Witcher universe: books by Andrzej Sapkowski, games by CD Projekt RED (The Witcher 1-3, Gwent), Netflix series, and comics.
+                    p.lead.my-2 This project is possible thanks to the community, which provides financial support as well as new articles exploring topics that have not yet been studied.
+                    //h3 Features
+                    //ul
+                    //    li Detailed lore entries on characters, locations, quests.
+                    //    li Monster bestiaries with weaknesses and alchemy recipes.
+                    //    li Timelines from books to games.
+                    //    li Community contributions coming soon.
+            div(class="col-md-3")
+                img(class="item-photo mx-auto d-block", src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+        div(class="container py-5" id="featured-3")
+            h2(class="pb-2 border-bottom") Features
+            div(class="row g-4 py-5 row-cols-1 row-cols-lg-3")
+                div(class="feature col")
+                    h3(class="fs-2") Thorough research
+                    p.lead Detailed lore entries on characters, locations, quests. Every information and it's source is double checked.
+                div(class="feature col")
+                    h3(class="fs-2") Everything you need
+                    p.lead From Monster bestiaries with weaknesses to alchemy recipes. Our wiki offers all articles necessary to guide you through the world created by Andrzej Sapkowski.
+
+                div(class="feature col")
+                    h3(class="fs-2") Need more?
+                    p.lead Timelines from books to games. Everything you need to research this universe as much as you'd like!
+
+        div(class="text-center mt-4")
+            p Built with Express.js, Jade/Pug, Bootstrap, and passion for the Continent. Contact: witcherwiki@example.com

@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    div(class="container-fluid px-0 full-header")
+        header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+            div(class="col-md-3 mb-2 mb-md-0")
+                a(href="/home", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                    img(id="logo" src="https://images.steamusercontent.com/ugc/87095243496079769/37CACC7EA2772907E41A473C7B4DA121BFFA206C/?imw=512&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false")
+
+            ul.nav.col-12.col-md-auto.justify-content-center
+                li.nav-item
+                    a(href="/home", class="nav-link") Home
+                li.nav-item
+                    a(href="/articles", class="nav-link") Articles
+                li.nav-item
+                    a(href="/support", class="nav-link") Support Us!
+                li.nav-item
+                    a(href="/about", class="nav-link") About
+
+            div(class="col-md-3 text-end")
+                a(href="/login" class="btn btn-outline-primary me-2") Login
+                a(href="/register" class="btn btn-primary") Sign-up
+
+    .container.my-5
+        .row
+            .col-lg-8.mx-auto
+                // Article Header
+                .article-header.mb-5
+                    a(href="/articles" class="btn btn-outline-primary mb-3")
+                        i(class="bi bi-arrow-left me-2")
+                        | Back to Articles
+                    h1(class="title-font mb-3")= article.title
+                    .article-meta.d-flex.align-items-center.gap-3.mb-4(style="color: #B2B1B9;")
+                        span
+                            i(class="bi bi-person-circle me-1")
+                            | #{article.author || 'Witcher Archives'}
+                        span
+                            i(class="bi bi-calendar3 me-1")
+                            | #{article.date || 'Ancient Lore'}
+                        span
+                            i(class="bi bi-eye me-1")
+                            | #{article.views || '1,247'} views
+
+                // Featured Image
+                if article.image
+                    img(src=article.image alt=article.title class="img-fluid rounded mb-4 shadow" style="max-height: 400px; object-fit: cover; border: 2px solid #FFD523;")
+
+                // Article Content
+                article(class="article-content")
+                    != article.content  // Unsafe HTML for rich content
+
+                    // Tags
+                    if article.tags && article.tags.length
+                        .mt-5.pt-4.border-top
+                            h5 Tags:
+                            .d-flex.flex-wrap.gap-2.mt-2
+                                each tag in article.tags
+                                    span(class="badge bg-secondary text-gold px-3 py-2" style="background-color: #2C2E43 !important; border: 1px solid #FFD523; color: #FFD523;")= tag
+
+                // Action Buttons
+                .mt-5.d-flex.justify-content-between.flex-wrap.gap-3
+                    a(href="/articles" class="btn btn-outline-primary")
+                        i(class="bi bi-arrow-left me-2")
+                        | All Articles
+                    button(type="button" class="btn btn-primary" onclick="toggleBookmark()")
+                        i(class="bi bi-bookmark me-1")
+                        | Bookmark
+                    a(href="#" class="btn btn-outline-secondary") Share
+
+    script.
+        function toggleBookmark() {
+            const btn = event.target.closest('button');
+            const ic

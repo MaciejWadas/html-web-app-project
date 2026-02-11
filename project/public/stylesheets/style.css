@@ -1,0 +1,142 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: antiquewhite;
+  background-color: #2C2E43 ;
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lancelot", serif;
+  color: #FFD523
+}
+h2{
+  font-size: 45px;
+}
+.title-font{
+  font-family: "Lancelot", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+}
+
+#logo{
+  border-radius: 25%;
+  max-height: 50px;
+  margin: auto auto auto 5px;
+
+}
+.nav-link{
+  padding: 32px 30px;
+  color: #FFD523;
+  background-color: #595260;
+}
+.nav-link:link{
+  color: #FFD523;
+  background-color: #595260;
+}
+.nav-link:hover{
+  background-color: #FFD523;
+  color: #2C2E43 !important;
+}
+
+.active{
+  background-color: #FFD523 !important;
+  color: #2C2E43 !important;
+  border: none;
+}
+
+.nav-link:active{
+  background-color: #b5a045;
+  color: #2C2E43;
+}
+.nav-link:visited{
+  color: #FFD523;
+}
+
+
+
+.full-header {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.btn-primary{
+  background-color: #FFD523;
+  border-color: #2C2E43;
+  color: #2C2E43
+}
+.btn-primary:hover{
+  background-color: #ffe885;
+  border-color: #2C2E43;
+  color: #2C2E43;
+}
+.btn-primary:active, .btn-outline-primary:active{
+  background-color: #b5a045 !important;
+  color: #2C2E43 !important;
+  border-color: #b5a045 !important;
+}
+
+.btn-outline-primary{
+  border-color: #FFD523;
+  color: #FFD523;
+}
+.btn-outline-primary:hover{
+  background-color: #FFD523;
+  border-color: #FFD523;
+  color: #2C2E43;
+}
+
+header{
+  background-color: #595260;
+}
+article{
+  background-color: #595260;
+  border: 2px solid #FFD523;
+  display: inline-block;
+  flex:5;
+  width: 60%;
+  padding: 10px;
+  justify-items: start;
+}
+.item-photo{
+  border: 2px solid #B2B1B9;
+  background-color: #2C2E43;
+  max-height: 250px;
+  padding: 10px;
+  flex:1;
+  object-fit: contain;
+}
+.article-div{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 0 10%;
+}
+article > p{
+  margin: 0;
+}
+a {
+  color: #FFD523;
+}
+label{
+  color: #FFD523;
+
+}
+p{
+  color: antiquewhite;
+}
+
+input{
+  background-color: #2C2E43 !important;
+  border: 1px solid#FFD523 !important;
+  color: #FFD523 !important;
+}
+input::placeholder{
+  color: #FFD523 !important;
+}
+.form-text{
+  color: antiquewhite;
+}
