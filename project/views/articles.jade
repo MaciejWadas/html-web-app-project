@@ -23,26 +23,22 @@ block content
 
     .container.my-5
         h1(class="title-font text-center mb-5") All Articles
-        div(class="row")
-            div(class="col-md-6 mb-4 text-center")
-                article(class="p-4 h-100")
-                    h3 Geralt of Rivia
-                    p Master witcher, mutant monster slayer. Travels the Continent with Roach, his horse.
-                    a(href="#" class="btn btn-outline-primary mt-3") Read More
-            div(class="col-md-6 mb-4 text-center")
-                article(class="p-4 h-100")
-                    h3 Cirilla Fiona Elen Riannon
-                    p Lion Cub of Cintra, trained as witcher. Possesses Elder Blood powers.
-                    a(href="#" class="btn btn-outline-primary mt-3") Read More
-            div(class="col-md-6 mb-4 text-center")
-                article(class="p-4 h-100")
-                    h3 The Witcher Schools
-                    p Kaer Morhen (Wolves), Viper School, Cat School. Each with unique signs and mutations.
-                    a(href="#" class="btn btn-outline-primary mt-3") Read More
-            div(class="col-md-6 mb-4 text-center")
-                article(class="p-4 h-100")
-                    h3 Monsters of the Continent
-                    p From drowners to dragons, beasts lurk everywhere. Use Igni, Aard, and Yrden against them.
-                    a(href="#" class="btn btn-outline-primary mt-3") Read More
+
+        - for (let i = 0; i < articles.length; i += 2)
+            div(class="row")
+                - const article1 = articles[i]
+                div(class="col-md-6 mb-4 text-center")
+                    article(class="p-4 h-100")
+                        h3= article1.PostTitle
+                        p= article1.PostDescription
+                        a(href="/articles/#{article1.PostID}" class="btn btn-outline-primary mt-3") Read More
+                - if (i + 1 < limit)
+                    - const article2 = articles[i + 1]
+                    div(class="col-md-6 mb-4 text-center")
+                        article(class="p-4 h-100")
+                            h3= article2.PostTitle
+                            p= article2.PostDescription
+                            a(href="/articles/#{article2.PostID}" class="btn btn-outline-primary mt-3") Read More
+
         div(class="text-center ")
-            a(href="#" class="btn btn-primary") Load More Articles
+            a(href="/articles?limit=#{limit}" class="btn btn-primary") Load More Articles

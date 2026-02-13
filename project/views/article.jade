@@ -9,7 +9,7 @@ block content
 
             ul.nav.col-12.col-md-auto.justify-content-center
                 li.nav-item
-                    a(href="/home", class="nav-link") Home
+                    a(href="/", class="nav-link") Home
                 li.nav-item
                     a(href="/articles", class="nav-link") Articles
                 li.nav-item
@@ -23,51 +23,25 @@ block content
 
     .container.my-5
         .row
-            .col-lg-8.mx-auto
+            .col-lg-8.mx-2
                 // Article Header
                 .article-header.mb-5
                     a(href="/articles" class="btn btn-outline-primary mb-3")
                         i(class="bi bi-arrow-left me-2")
                         | Back to Articles
-                    h1(class="title-font mb-3")= article.title
+                    h1(class="title-font mb-3")= article.PostTitle
                     .article-meta.d-flex.align-items-center.gap-3.mb-4(style="color: #B2B1B9;")
                         span
                             i(class="bi bi-person-circle me-1")
-                            | #{article.author || 'Witcher Archives'}
-                        span
-                            i(class="bi bi-calendar3 me-1")
-                            | #{article.date || 'Ancient Lore'}
-                        span
-                            i(class="bi bi-eye me-1")
-                            | #{article.views || '1,247'} views
-
-                // Featured Image
-                if article.image
-                    img(src=article.image alt=article.title class="img-fluid rounded mb-4 shadow" style="max-height: 400px; object-fit: cover; border: 2px solid #FFD523;")
-
+                            | Post Author: #{article.PostAuthor || 'Witcher Archives'}
+        .row
+            .col-lg-9.px-5
                 // Article Content
-                article(class="article-content")
-                    != article.content  // Unsafe HTML for rich content
+                article(class="article-content w-100")
+                    !{article.PostBody}
+            .col-lg-3.px-5
+                // Featured Image
+                if article.PostImageLink
+                    img(src=article.PostImageLink alt=article.title class="item-photo rounded mb-4 shadow")
 
-                    // Tags
-                    if article.tags && article.tags.length
-                        .mt-5.pt-4.border-top
-                            h5 Tags:
-                            .d-flex.flex-wrap.gap-2.mt-2
-                                each tag in article.tags
-                                    span(class="badge bg-secondary text-gold px-3 py-2" style="background-color: #2C2E43 !important; border: 1px solid #FFD523; color: #FFD523;")= tag
 
-                // Action Buttons
-                .mt-5.d-flex.justify-content-between.flex-wrap.gap-3
-                    a(href="/articles" class="btn btn-outline-primary")
-                        i(class="bi bi-arrow-left me-2")
-                        | All Articles
-                    button(type="button" class="btn btn-primary" onclick="toggleBookmark()")
-                        i(class="bi bi-bookmark me-1")
-                        | Bookmark
-                    a(href="#" class="btn btn-outline-secondary") Share
-
-    script.
-        function toggleBookmark() {
-            const btn = event.target.closest('button');
-            const ic
