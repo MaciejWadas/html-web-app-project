@@ -147,3 +147,27 @@ input::placeholder{
 .form-text{
   color: antiquewhite;
 }
+
+#tags > li > a{
+  display: block;
+  color: antiquewhite;
+  text-decoration: none;
+  border-radius: 5px;
+  padding:5px 10px;
+  margin: 3px 0;
+}
+
+#active-tag{
+  background-color: #FFD523;
+  color: #2C2E43 !important;
+  padding:10px 10px !important;
+  width: max-content ;
+}
+
+#tags > li > a:hover{
+  background-color: #FFD523;
+  color: #2C2E43;
+  padding:10px 10px;
+  transition: 0.3s;
+  width: max-content;
+}

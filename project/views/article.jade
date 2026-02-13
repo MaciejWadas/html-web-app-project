@@ -29,11 +29,12 @@ block content
                     a(href="/articles" class="btn btn-outline-primary mb-3")
                         i(class="bi bi-arrow-left me-2")
                         | Back to Articles
-                    h1(class="title-font mb-3")= article.PostTitle
+                    h1(class="title-font")= article.PostTitle
                     .article-meta.d-flex.align-items-center.gap-3.mb-4(style="color: #B2B1B9;")
                         span
                             i(class="bi bi-person-circle me-1")
                             | Post Author: #{article.PostAuthor || 'Witcher Archives'}
+
         .row
             .col-lg-9.px-5
                 // Article Content
@@ -44,4 +45,11 @@ block content
                 if article.PostImageLink
                     img(src=article.PostImageLink alt=article.title class="item-photo rounded mb-4 shadow")
 
-
+    p.lead.mx-5
+        span Tags:
+        - for (let i=0; i<tags.length; i++)
+            - const tag = tags[i]
+            - if (i < tags.length - 1)
+                span  #{tag.TagName},
+            - else
+                span  #{tag.TagName}

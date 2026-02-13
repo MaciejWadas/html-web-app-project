@@ -22,23 +22,55 @@ block content
                 button(type="button", class="btn btn-primary") Sign-up
 
     .container.my-5
-        h1(class="title-font text-center mb-5") All Articles
-
-        - for (let i = 0; i < articles.length; i += 2)
+        div(class="row")
+            .col-md-2
+            .col-md-10
+                if active_tag
+                    h1(class="title-font text-center mb-5") Articles regarding: #{active_tag.TagName}
+                else
+                    h1(class="title-font text-center mb-5") All Articles
             div(class="row")
-                - const article1 = articles[i]
-                div(class="col-md-6 mb-4 text-center")
-                    article(class="p-4 h-100")
-                        h3= article1.PostTitle
-                        p= article1.PostDescription
-                        a(href="/articles/#{article1.PostID}" class="btn btn-outline-primary mt-3") Read More
-                - if (i + 1 < limit)
-                    - const article2 = articles[i + 1]
-                    div(class="col-md-6 mb-4 text-center")
-                        article(class="p-4 h-100")
-                            h3= article2.PostTitle
-                            p= article2.PostDescription
-                            a(href="/articles/#{article2.PostID}" class="btn btn-outline-primary mt-3") Read More
+                .col-md-2
+                    h3 Filter By:
+                    ul#tags
+                        li
+                            if !active_tag
+                                a#active-tag(class="lead" href="/articles") Any
+                            else
+                                a(class="lead" href="/articles") Any
 
-        div(class="text-center ")
-            a(href="/articles?limit=#{limit}" class="btn btn-primary") Load More Articles
+                        each tag in tags
+                            li
+                                if active_tag
+                                    if tag.TagName === active_tag.TagName
+                                        a#active-tag(class="lead" href="/articles?tag=#{tag.TagID}") #{tag.TagName}
+                                    else
+                                        a(class="lead" href="/articles?tag=#{tag.TagID}") #{tag.TagName}
+                                else
+                                    a(class="lead" href="/articles?tag=#{tag.TagID}") #{tag.TagName}
+
+
+                .col-md-10
+                    .container
+                        - for (let i = 0; i < articles.length; i += 2)
+                            div(class="row")
+                                - const article1 = articles[i]
+                                div(class="col-md-6 mb-4 text-center")
+                                    article(class="p-4 h-100 w-100")
+                                        h3= article1.PostTitle
+                                        p= article1.PostDescription
+                                        a(href="/articles/#{article1.PostID}" class="btn btn-outline-primary mt-3") Read More
+                                - if (i + 1 < limit)
+                                    - const article2 = articles[i + 1]
+                                    div(class="col-md-6 mb-4 text-center")
+                                        article(class="p-4 h-100 w-100")
+                                            h3= article2.PostTitle
+                                            p= article2.PostDescription
+                                            a(href="/articles/#{article2.PostID}" class="btn btn-outline-primary mt-3") Read More
+                        .row.justify-content-center
+                            .col-md-3
+                                div(class="text-center ")
+                                    if active_tag
+                                        a(href="/articles?limit=#{limit}&tag=#{active_tag.TagID}" class="btn btn-primary") Load More Articles
+                                    else
+                                        a(href="/articles?limit=#{limit}" class="btn btn-primary") Load More Articles
