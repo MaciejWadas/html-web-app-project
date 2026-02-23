@@ -1,16 +1,8 @@
 require('dotenv').config();
-
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql2');
-
-const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
-const db = mysql.createConnection({
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_NAME
-})
+pool = require('../db.js')
+express = require('express');
+router = express.Router();
+mysql = require('mysql2');
 
 const getAllArticles =(req, res, next) => {
     let limit = 4
@@ -23,7 +15,7 @@ const getAllArticles =(req, res, next) => {
         query = `SELECT * FROM posts p RIGHT JOIN article_tags a ON p.postID = a.postID WHERE a.tagID = ${tag} LIMIT ${limit}`;
         req.tag = tag;
     }
-    db.query(query, (err, result) => {
+    pool.query(query, (err, result) => {
         if (err) {
             console.log("Error fetching articles from the database: "+err);
             return res.status(500).send("Database error");
@@ -36,7 +28,7 @@ const getAllArticles =(req, res, next) => {
 
 const getAllTags =(req, res, next) => {
     var query = 'SELECT * FROM tags;';
-    db.query(query, (err, result) => {
+    pool.query(query, (err, result) => {
         if (err) {
             console.log("Error fetching tags from the database: "+err);
             return res.status(500).send("Database error");
@@ -52,7 +44,7 @@ const getAllTags =(req, res, next) => {
 
 const getTagsForArticle = (req, res, next) => {
     var query = `SELECT * FROM article_tags a LEFT JOIN tags t ON a.tagID = t.TagID WHERE a.postID = ${req.article[0].PostID}`;
-    db.query(query, (err, result) => {
+    pool.query(query, (err, result) => {
         if (err) {
             console.log("Error fetching tags from the database: "+err);
             return res.status(500).send("Database error");
@@ -64,7 +56,7 @@ const getTagsForArticle = (req, res, next) => {
 
 const getArticle=(req,res,next) => {
     var query = 'SELECT * FROM posts WHERE postID = '+req.params.id+";";
-    db.query(query, (err, result) => {
+    pool.query(query, (err, result) => {
         if(err){
             console.error("Error fetching article from the database: "+err);
             return res.status(500).send("Database error");
@@ -74,30 +66,56 @@ const getArticle=(req,res,next) => {
     })
 }
 
-db.connect(err => {
-    if (err) {
-        console.error('DB Connection failed:', err);
-        return;
-    }
-    console.log('MySQL Connected!');
-});
-
-/* GET home page. */
 router.get('/',getAllArticles,getAllTags, (req, res) => {
     res.render('articles', {
         title: 'The Witcher - Wiki',
         articles: req.articles,
         limit: req.limit,
         tags: req.tags,
-        active_tag: req.tag
+        active_tag: req.tag,
+        page:'articles',
+        user: req.user
     });
 });
+
+router.get('/create-article',function(req, res, next){
+    res.render('create_article', {
+        user: req.user,
+        page:'create-article'
+    })
+})
+
+router.post('/create-article',function(req, res,next){
+    var query = `INSERT INTO posts (PostTitle,PostDescription,PostBody,PostImageLink,PostAuthor) VALUES (?,?,?,?,?);`;
+    pool.query(query, [
+        req.body.PostTitle,
+        req.body.PostDescription,
+        req.body.PostBody,
+        req.body.PostImageLink,
+        req.body.PostAuthor
+    ], function(err) {
+        if (err) { return next(err);}
+        var query = `SELECT PostID FROM posts WHERE PostTitle="`+req.body.PostTitle+'";';
+        console.log(query);
+        pool.query(query,(err, result) => {
+            if (err) {
+                console.error("Error fetching posts from the database: "+err);
+            }
+            console.log("Result:"+result[0].PostID);
+            res.redirect(`/articles/`+result[0].PostID);
+        })
+    })
+})
 
 router.get('/:id', getArticle, getTagsForArticle, (req, res) =>{
     res.render('article', {
         title: 'The Witcher - Wiki',
+        page:'articles',
+        user: req.user,
         article: req.article[0] || [],
         tags: req.tags
     });
 })
+
+
 module.exports = router;

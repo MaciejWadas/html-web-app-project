@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+express = require('express');
+router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('support', { title: 'The Witcher - Wiki' });
+    res.render('support', { title: 'The Witcher - Wiki', user: req.user, page: 'support' });
 });
 
 module.exports = router;

@@ -23,8 +23,10 @@ h2{
 #logo{
   border-radius: 25%;
   max-height: 50px;
-  margin: auto auto auto 5px;
-
+}
+#logo:hover{
+  background-color: #2C2E43 !important;
+  transition: 500ms;
 }
 .nav-link{
   padding: 32px 30px;
@@ -53,8 +55,6 @@ h2{
 .nav-link:visited{
   color: #FFD523;
 }
-
-
 
 .full-header {
   width: 100vw;
@@ -136,12 +136,12 @@ p{
   color: antiquewhite;
 }
 
-input{
+input, textarea{
   background-color: #2C2E43 !important;
   border: 1px solid#FFD523 !important;
   color: #FFD523 !important;
 }
-input::placeholder{
+input::placeholder, textarea::placeholder{
   color: #FFD523 !important;
 }
 .form-text{

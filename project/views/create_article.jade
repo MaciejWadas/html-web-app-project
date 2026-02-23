@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    .container.my-5
+        h1.title-font.text-center.mb-5 Add New Article
+        form(method='POST' action='/articles/create-article')
+            .row.justify-content-center
+                .col-md-8
+                    .card.shadow(style="background-color: #595260; border: 2px solid #FFD523;")
+                        .card-body.p-4
+                            // Title
+                            .mb-4
+                                label.form-label(for='postTitle') Post Title *
+                                input#postTitle(type='text' name='PostTitle' class='form-control' required placeholder='e.g., Geralt of Rivia')
+
+                            // Author
+                            .mb-4
+                                label.form-label(for='postAuthor') Author
+                                input#postAuthor(type='text' name='PostAuthor' class='form-control' placeholder='e.g., Dandelion')
+
+                            // Description
+                            .mb-4
+                                label.form-label(for='postDescription') Description
+                                textarea#postDescription(name='PostDescription' class='form-control' rows='3' placeholder='Brief summary...')
+
+                            // Body (HTML content)
+                            .mb-4
+                                label.form-label(for='postBody') Article Body (HTML)
+                                textarea#postBody(name='PostBody' class='form-control' rows='10' placeholder='&lt;p&gt;Enter HTML content...&lt;/p&gt;')
+
+                            // Image URL
+                            .mb-4
+                                label.form-label(for='postImageLink') Image URL
+                                input#postImageLink(type='url' name='PostImageLink' class='form-control' placeholder='https://example.com/image.jpg')
+                            .mb-4
+                                label.form-label(for='posTags') Post Tags
+                                input#posTags(type='text' name='posTags' class='form-control' placeholder='e.g. witcher,human,location')
+                            // Submit
+                            .d-grid
+                                button(type='submit' class='btn btn-primary btn-lg') Create Article
+                                a(href='/articles' class='btn btn-outline-primary mt-2') Cancel

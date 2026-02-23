@@ -1,17 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+createError = require('http-errors');
+express = require('express');
+path = require('path');
+cookieParser = require('cookie-parser');
+logger = require('morgan');
+passport = require('passport');
+pool = require('./db.js')
+session = require(`express-session`);
+mysqlStore = require(`express-mysql-session`)(session);
+mysql = require(`mysql2`);
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var articlesRouter = require('./routes/articles');
-var supportRouter = require('./routes/support');
-var aboutRouter = require('./routes/about');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
-var app = express();
+indexRouter = require('./routes/index');
+articlesRouter = require('./routes/articles');
+supportRouter = require('./routes/support');
+aboutRouter = require('./routes/about');
+authRouter = require('./routes/auth');
+app = express();
+
+const sessionStore = new mysqlStore({} , pool);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,14 +28,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    session({
+        secret: `keyboard cat`,
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+})
+);
+
+app.use(passport.initialize());
+app.use(passport.session(sessionStore));
+
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/articles',articlesRouter);
 app.use('/support', supportRouter);
 app.use('/about', aboutRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

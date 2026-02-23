@@ -8,5 +8,34 @@ html
     link(rel="stylesheet", href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+      div(class="container-fluid px-0 full-header")
+          header(class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 px-3")
+              div(class="col-md-3 mb-2 mb-md-0")
+                  a(href="/", class="d-inline-flex link-body-emphasis text-decoration-none my-3")
+                      img(id="logo" src="/images/logo_light.png")
+
+              ul.nav.col-12.col-md-auto.justify-content-center
+                  li
+
+                      a(href="/", class=`nav-link ${page === 'home' ? 'active' : ''}`) Home
+                  li
+                      a(href="/articles", class=`nav-link ${page === 'articles' ? 'active' : ''}`) Articles
+                  li
+                      a(href="/support", class=`nav-link ${page === 'support' ? 'active' : ''}`) Support Us!
+                  li
+                      a(href="/about", class=`nav-link ${page === 'about' ? 'active' : ''}`) About
+                  if user
+                      li
+                          a(href="/articles/create-article", class = `nav-link ${page === 'create-article' ? 'active' : ''}`) Create Article
+
+
+              div(class="col-md-3 text-end")
+
+                  if user
+                      form(method="POST", action="/logout")
+                          button(type="submit", class="btn btn-outline-primary me-2") Sign-out
+                  else
+                      a(href="/login", class="btn btn-outline-primary me-2") Sign-in
+                      a(href="/signup", class="btn btn-primary") Sign-up
     block content
     script(src="/javascripts/bootstrap.bundle.js")
